@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ගුරු කතාව | Grade 5 ශිෂ්‍යත්ව</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --ink: #0A0F1E;
+  --gold: #F6C90E;
+  --teal: #0CC9A3;
+  --rose: #FF6B6B;
+  --sky: #4FC3F7;
+  --surface: #111827;
+  --card: #1C2537;
+  --border: rgba(255,255,255,0.08);
+  --text: rgba(255,255,255,0.85);
+  --muted: rgba(255,255,255,0.45);
+}
+
+body {
+  font-family: 'Noto Sans Sinhala', sans-serif;
+  background: var(--ink);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ────── HEADER ────── */
+header {
+  background: linear-gradient(180deg, #0D1526 0%, var(--ink) 100%);
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky; top: 0; z-index: 100;
+}
+
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 900; font-size: 18px;
+  color: white;
+}
+.logo-dot { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; }
+.logo span { color: var(--gold); }
+
+.header-actions { display: flex; gap: 10px; align-items: center; }
+.btn-outline {
+  padding: 8px 18px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-family: inherit; font-size: 13px;
+  color: var(--text); background: transparent; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ────── HERO ────── */
+.hero {
+  padding: 60px 24px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse at top, rgba(246,201,14,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(246,201,14,0.12); border: 1px solid rgba(246,201,14,0.3);
+  color: var(--gold); padding: 5px 14px; border-radius: 30px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 20px;
+}
+.pill::before { content: '✦'; font-size: 10px; }
+
+.hero h1 {
+  font-size: clamp(26px, 5vw, 46px);
+  font-weight: 900; line-height: 1.25;
+  color: white; margin-bottom: 14px;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+
+.hero p {
+  color: var(--muted); font-size: 15px; line-height: 1.9;
+  max-width: 480px; margin: 0 auto 40px;
+}
+
+/* ────── SUBJECTS TABS ────── */
+.subjects-bar {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 0 24px 40px;
+}
+
+.subject-tab {
+  padding: 9px 20px; border-radius: 40px;
+  border: 1.5px solid var(--border);
+  background: transparent; color: var(--muted);
+  font-family: inherit; font-size: 14px;
+  cursor: pointer; transition: all 0.2s;
+}
+.subject-tab:hover, .subject-tab.active {
+  background: var(--gold); border-color: var(--gold);
+  color: var(--ink); font-weight: 700;
+}
+
+/* ────── TUTORS SECTION ────── */
+.tutors-section {
+  padding: 0 24px 80px;
+  max-width: 1080px; margin: 0 auto;
+}
+
+.section-label {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+  font-size: 13px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase;
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.tutors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 20px;
+}
+
+.tutor-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  animation: fadeUp 0.4s ease both;
+}
+.tutor-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(246,201,14,0.3);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(24px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.tutor-card:nth-child(1) { animation-delay: 0s; }
+.tutor-card:nth-child(2) { animation-delay: 0.1s; }
+.tutor-card:nth-child(3) { animation-delay: 0.2s; }
+.tutor-card:nth-child(4) { animation-delay: 0.3s; }
+.tutor-card:nth-child(5) { animation-delay: 0.4s; }
+
+.card-top {
+  padding: 20px 20px 0;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+
+.avatar {
+  width: 60px; height: 60px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; flex-shrink: 0;
+  position: relative;
+}
+
+.avatar-online::after {
+  content: '';
+  position: absolute; bottom: 2px; right: 2px;
+  width: 12px; height: 12px;
+  background: var(--teal); border: 2px solid var(--card);
+  border-radius: 50%;
+}
+
+.tutor-info { flex: 1; }
+.tutor-name {
+  font-size: 16px; font-weight: 700; color: white;
+  margin-bottom: 3px;
+}
+.tutor-subject {
+  font-size: 12px; color: var(--gold); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.stars {
+  display: flex; gap: 2px; align-items: center;
+  font-size: 13px; color: var(--gold);
+}
+.stars span { color: var(--muted); margin-left: 4px; font-size: 12px; }
+
+.card-body { padding: 16px 20px; }
+.tutor-bio {
+  font-size: 13px; color: var(--muted); line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.tag {
+  padding: 4px 10px; border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  font-size: 11px; color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.price-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+.price { font-size: 18px; font-weight: 900; color: white; }
+.price small { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 2px; }
+
+.availability {
+  font-size: 12px; color: var(--teal);
+  display: flex; align-items: center; gap: 5px;
+}
+.availability::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--teal); border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+.card-actions {
+  padding: 0 20px 20px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+
+.btn-call {
+  padding: 12px; border-radius: 12px;
+  font-family: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+.btn-video {
+  background: linear-gradient(135deg, var(--teal), #06A883);
+  border: none; color: white;
+}
+.btn-video:hover { box-shadow: 0 8px 20px rgba(12,201,163,0.4); transform: translateY(-1px); }
+
+.btn-schedule {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+.btn-schedule:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ────── VIDEO CALL MODAL ────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  width: 100%; max-width: 520px;
+  overflow: hidden;
+  transform: scale(0.92);
+  transition: transform 0.3s;
+}
+.modal-overlay.open .modal { transform: scale(1); }
+
+/* ── WAITING STATE ── */
+.modal-waiting {
+  padding: 48px 32px;
+  text-align: center;
+}
+.call-avatar-wrap {
+  position: relative;
+  display: inline-block; margin-bottom: 24px;
+}
+.call-avatar {
+  width: 100px; height: 100px; border-radius: 28px;
+  font-size: 52px; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.ring {
+  position: absolute; inset: -10px;
+  border: 2px solid var(--teal);
+  border-radius: 36px;
+  animation: ringPulse 2s ease-out infinite;
+}
+.ring2 {
+  position: absolute; inset: -20px;
+  border: 1px solid rgba(12,201,163,0.4);
+  border-radius: 44px;
+  animation: ringPulse 2s ease-out infinite 0.5s;
+}
+@keyframes ringPulse {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
+
+.calling-name { font-size: 22px; font-weight: 900; color: white; margin-bottom: 6px; }
+.calling-sub { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+.calling-status { font-size: 13px; color: var(--teal); font-weight: 600; margin-bottom: 36px; }
+
+.call-controls {
+  display: flex; gap: 20px; justify-content: center;
+}
+.ctrl-btn {
+  width: 56px; height: 56px; border-radius: 18px;
+  border: none; cursor: pointer; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ctrl-btn:hover { transform: scale(1.08); }
+.ctrl-end {
+  background: var(--rose);
+  box-shadow: 0 8px 20px rgba(255,107,107,0.4);
+}
+.ctrl-mute { background: rgba(255,255,255,0.1); }
+.ctrl-cam  { background: rgba(255,255,255,0.1); }
+
+/* ── ACTIVE CALL UI ── */
+.modal-call { display: none; }
+.modal-call.visible { display: block; }
+.modal-waiting.hidden { display: none; }
+
+.video-area {
+  background: #060D1A;
+  height: 280px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.video-placeholder {
+  text-align: center;
+}
+.video-placeholder .big-emoji { font-size: 64px; margin-bottom: 12px; }
+.video-placeholder p { color: var(--muted); font-size: 14px; }
+
+.self-view {
+  position: absolute; bottom: 14px; right: 14px;
+  width: 90px; height: 70px;
+  background: var(--card);
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+
+.call-bar {
+  background: var(--surface);
+  padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.call-info .caller-nm { font-size: 15px; font-weight: 700; color: white; }
+.call-info .timer { font-size: 13px; color: var(--teal); font-family: monospace; margin-top: 2px; }
+
+.call-bar-actions { display: flex; gap: 10px; }
+.cba {
+  width: 44px; height: 44px; border-radius: 14px;
+  border: none; cursor: pointer; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.cba-end { background: var(--rose); }
+.cba-mic { background: rgba(255,255,255,0.1); }
+.cba-vid { background: rgba(255,255,255,0.1); }
+.cba-end:hover { box-shadow: 0 6px 16px rgba(255,107,107,0.5); }
+.cba.active { background: rgba(255,107,107,0.2); border: 1px solid var(--rose); }
+
+/* ────── BOOK MODAL ────── */
+.book-modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  width: 100%; max-width: 460px;
+  padding: 32px;
+}
+
+.book-modal h3 { font-size: 20px; font-weight: 900; color: white; margin-bottom: 6px; }
+.book-modal .sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block; font-size: 12px; font-weight: 700;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-family: inherit; font-size: 14px; color: white;
+  transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--gold);
+}
+.form-group select option { background: #1C2537; }
+
+.slots {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+}
+.slot {
+  padding: 10px 8px; border-radius: 10px; text-align: center;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid var(--border);
+  font-size: 12px; color: var(--muted); cursor: pointer;
+  transition: all 0.2s;
+}
+.slot:hover, .slot.picked {
+  background: rgba(246,201,14,0.1);
+  border-color: var(--gold); color: var(--gold); font-weight: 700;
+}
+.slot.taken { opacity: 0.3; pointer-events: none; }
+
+.modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.btn-confirm {
+  padding: 14px; background: linear-gradient(135deg, var(--gold), #D4A800);
+  border: none; border-radius: 12px; font-family: inherit;
+  font-size: 14px; font-weight: 900; color: var(--ink);
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-confirm:hover { box-shadow: 0 8px 20px rgba(246,201,14,0.4); }
+.btn-cancel {
+  padding: 14px; background: transparent;
+  border: 1.5px solid var(--border); border-radius: 12px;
+  font-family: inherit; font-size: 14px; color: var(--muted);
+  cursor: pointer; transition: border-color 0.2s, color 0.2s;
+}
+.btn-cancel:hover { border-color: var(--rose); color: var(--rose); }
+
+/* ────── TOAST ────── */
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--teal); color: var(--ink);
+  padding: 12px 24px; border-radius: 40px;
+  font-weight: 700; font-size: 14px;
+  transition: transform 0.4s; z-index: 300;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ────── RESPONSIVE ────── */
+@media(max-width: 500px) {
+  .tutors-grid { grid-template-columns: 1fr; }
+  .modal { border-radius: 20px; }
+  .subjects-bar { gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <span>ගුරු</span>කතාව
+  </div>
+  <div class="header-actions">
+    <button class="btn-outline">ලොග් ඉන්</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="pill">Grade 5 ශිෂ්‍යත්ව විභාගය 2025</div>
+  <h1>හොඳම ගුරු<br><em>සෙවීම පහසුයි</em></h1>
+  <p>ඔබේ දරුවාට සුදුසු ගුරුවරයා සොයා, online video call එකෙන් ඉගෙනගන්න. ලංකාවේ හොඳම ගුරුවරුන් ඔබ ළඟ.</p>
+</div>
+
+<!-- SUBJECT TABS -->
+<div class="subjects-bar">
+  <button class="subject-tab active" onclick="filterSubject(this,'all')">සියල්ල</button>
+  <button class="subject-tab" onclick="filterSubject(this,'math')">📐 ගණිතය</button>
+  <button class="subject-tab" onclick="filterSubject(this,'science')">🔬 පරිසරය</button>
+  <button class="subject-tab" onclick="filterSubject(this,'sinhala')">📖 සිංහල</button>
+  <button class="subject-tab" onclick="filterSubject(this,'english')">🔤 ඉංග්‍රීසි</button>
+  <button class="subject-tab" onclick="filterSubject(this,'religion')">🕌 ආගම</button>
+</div>
+
+<!-- TUTORS -->
+<div class="tutors-section">
+  <div class="section-label">ලබා ගත හැකි ගුරුවරුන්</div>
+  <div class="tutors-grid" id="tutors-grid"></div>
+</div>
+
+<!-- VIDEO CALL MODAL -->
+<div class="modal-overlay" id="call-modal">
+  <div class="modal">
+    <!-- Waiting/Ringing -->
+    <div class="modal-waiting" id="waiting-state">
+      <div class="call-avatar-wrap">
+        <div class="ring"></div>
+        <div class="ring2"></div>
+        <div class="call-avatar" id="call-avatar" style="background:#1C2537;">🧑‍🏫</div>
+      </div>
+      <div class="calling-name" id="call-name">ගුරුවරයා</div>
+      <div class="calling-sub" id="call-subject">ගණිතය</div>
+      <div class="calling-status" id="call-status">රිංග් වෙමින්...</div>
+      <div class="call-controls">
+        <button class="ctrl-btn ctrl-mute" id="mute-btn" onclick="toggleMute()" title="නිශ්ශබ්ද">🎙️</button>
+        <button class="ctrl-btn ctrl-end" onclick="endCall()" title="Call Cut">📵</button>
+        <button class="ctrl-btn ctrl-cam" onclick="toggleCam()" title="Camera">📷</button>
+      </div>
+    </div>
+    <!-- Active Call -->
+    <div class="modal-call" id="call-state">
+      <div class="video-area">
+        <div class="video-placeholder">
+          <div class="big-emoji" id="teacher-emoji">🧑‍🏫</div>
+          <p id="teacher-video-label">ගුරුවරයාගේ video...</p>
+        </div>
+        <div class="self-view">😊</div>
+      </div>
+      <div class="call-bar">
+        <div class="call-info">
+          <div class="caller-nm" id="active-call-name">ගුරුවරයා</div>
+          <div class="timer" id="call-timer">00:00</div>
+        </div>
+        <div class="call-bar-actions">
+          <button class="cba cba-mic" id="cba-mic" onclick="toggleMute()" title="Mic">🎙️</button>
+          <button class="cba cba-vid" onclick="toggleCam()" title="Camera">📹</button>
+          <button class="cba cba-end" onclick="endCall()" title="End">📵</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK MODAL -->
+<div class="modal-overlay" id="book-modal">
+  <div class="book-modal">
+    <h3>📅 පන්ති වෙන් කරගන්න</h3>
+    <p class="sub" id="book-tutor-label">ගුරුවරයා සමග</p>
+
+    <div class="form-group">
+      <label>ළමයාගේ නම</label>
+      <input type="text" id="student-name" placeholder="ළමයාගේ සම්පූර්ණ නම">
+    </div>
+    <div class="form-group">
+      <label>දිනය</label>
+      <input type="date" id="book-date">
+    </div>
+    <div class="form-group">
+      <label>ලබා ගත හැකි වේලාවන්</label>
+      <div class="slots" id="time-slots"></div>
+    </div>
+    <div class="form-group">
+      <label>විශේෂ සටහන</label>
+      <textarea id="book-note" rows="2" placeholder="ඕනෑ නම් සටහනක් ලියන්න..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeBookModal()">අවලංගු කරන්න</button>
+      <button class="btn-confirm" onclick="confirmBooking()">✓ Book කරන්න</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA ───
+const tutors = [
+  {
+    id: 1, name: 'නිශාන්ත ද සිල්වා', emoji: '👨‍🏫', subject: 'ගණිතය',
+    subjectKey: 'math', rating: 4.9, reviews: 312,
+    bio: 'ශිෂ්‍යත්ව විභාගයෙන් A ගෙන ඒමේ විශේෂ නිවාඩු වැඩසටහන් 8 වසරක් ගෙනාව ගුරුවරයා.',
+    tags: ['ශිෂ්‍යත්ව ගණිතය','Model Papers','Speed Math'],
+    price: 800, bg: '#1a2640', online: true,
+    slots: ['8:00 AM','9:30 AM','2:00 PM','4:00 PM','6:00 PM','7:30 PM']
+  },
+  {
+    id: 2, name: 'සිහිනා කරුණාරත්න', emoji: '👩‍🏫', subject: 'සිංහල',
+    subjectKey: 'sinhala', rating: 4.8, reviews: 198,
+    bio: 'ශිෂ්‍යත්ව සිංහල, රචනා, ව්‍යාකරණ සහ කතා කීම ඉගැන්වීමේ ආචාර්ය උපාධිය.',
+    tags: ['ව්‍යාකරණ','රචනා','කවි'],
+    price: 700, bg: '#1f1630', online: true,
+    slots: ['7:30 AM','10:00 AM','1:00 PM','3:30 PM','5:00 PM']
+  },
+  {
+    id: 3, name: 'රසිකා ජයවර්ධන', emoji: '👩‍🔬', subject: 'පරිසරය',
+    subjectKey: 'science', rating: 4.7, reviews: 145,
+    bio: 'සාමාන්‍ය දැනුම හා පරිසරය ඉගැන්වීමේ ජාතික ගුරු රාජ්‍ය සම්මාන ලාභිනිය.',
+    tags: ['Life Science','පරිසරය','GK'],
+    price: 750, bg: '#0d2020', online: false,
+    slots: ['9:00 AM','11:00 AM','2:30 PM','5:30 PM']
+  },
+  {
+    id: 4, name: 'ශාන් ෆේරා', emoji: '🧑‍💻', subject: 'ඉංග්‍රීසි',
+    subjectKey: 'english', rating: 4.9, reviews: 276,
+    bio: 'British Council සහ IELTS certified ගුරුවරයෙක්. Kids Communication විශේෂඥ.',
+    tags: ['Speaking','Grammar','Writing'],
+    price: 900, bg: '#1a1a2e', online: true,
+    slots: ['8:30 AM','10:30 AM','1:30 PM','4:30 PM','7:00 PM']
+  },
+  {
+    id: 5, name: 'ලක්ෂිකා මේදිස්', emoji: '👩‍🏫', subject: 'ආගම',
+    subjectKey: 'religion', rating: 4.6, reviews: 89,
+    bio: 'බෞද්ධ ශිෂ්‍යත්ව ආගම ඉගැන්වීමේ වසර 12ක් දිය ගිය ගුරු ශ්‍රේෂ්ඨිය.',
+    tags: ['ජාතක කතා','ධර්ම','ෆ්ලෑෂ් කාඩ්'],
+    price: 650, bg: '#1a1200', online: true,
+    slots: ['8:00 AM','11:30 AM','3:00 PM','6:30 PM']
+  }
+];
+
+let activeTutor = null;
+let callTimer = null;
+let callSeconds = 0;
+let micOn = true, camOn = true;
+let pickedSlot = null;
+let activeSubject = 'all';
+
+// ─── RENDER ───
+function renderTutors(filter = 'all') {
+  const grid = document.getElementById('tutors-grid');
+  const filtered = filter === 'all' ? tutors : tutors.filter(t => t.subjectKey === filter);
+  grid.innerHTML = filtered.map((t, i) => `
+    <div class="tutor-card" style="animation-delay:${i*0.1}s">
+      <div class="card-top">
+        <div class="avatar ${t.online ? 'avatar-online' : ''}" style="background:${t.bg};">${t.emoji}</div>
+        <div class="tutor-info">
+          <div class="tutor-name">${t.name}</div>
+          <div class="tutor-subject">${t.subject}</div>
+          <div class="stars">
+            ${'★'.repeat(Math.floor(t.rating))}${ (t.rating%1>=0.5)?'½':''}
+            <span>(${t.reviews} reviews)</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="tutor-bio">${t.bio}</div>
+        <div class="tags">${t.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+        <div class="price-row">
+          <div class="price">රු ${t.price}<small>/පැය</small></div>
+          <div class="availability">${t.online ? 'දැන් Available' : 'Offline'}</div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-call btn-video" onclick="startCall(${t.id})">📹 Video Call</button>
+        <button class="btn-call btn-schedule" onclick="openBookModal(${t.id})">📅 Book</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterSubject(el, key) {
+  document.querySelectorAll('.subject-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  activeSubject = key;
+  renderTutors(key);
+}
+
+// ─── CALL ───
+function startCall(id) {
+  activeTutor = tutors.find(t => t.id === id);
+  document.getElementById('call-avatar').textContent = activeTutor.emoji;
+  document.getElementById('call-avatar').style.background = activeTutor.bg;
+  document.getElementById('call-name').textContent = activeTutor.name;
+  document.getElementById('call-subject').textContent = activeTutor.subject;
+  document.getElementById('call-status').textContent = 'රිංග් වෙමින්...';
+  document.getElementById('active-call-name').textContent = activeTutor.name;
+  document.getElementById('teacher-emoji').textContent = activeTutor.emoji;
+  document.getElementById('teacher-video-label').textContent = `${activeTutor.name}ගේ video...`;
+
+  // reset
+  document.getElementById('waiting-state').classList.remove('hidden');
+  document.getElementById('call-state').classList.remove('visible');
+  micOn = true; camOn = true;
+  updateMicBtn();
+
+  document.getElementById('call-modal').classList.add('open');
+
+  // simulate answer after 3s
+  setTimeout(() => {
+    document.getElementById('call-status').textContent = 'සම්බන්ධ වෙමින්...';
+    setTimeout(() => {
+      document.getElementById('waiting-state').classList.add('hidden');
+      document.getElementById('call-state').classList.add('visible');
+      startTimer();
+    }, 1200);
+  }, 3000);
+}
+
+function endCall() {
+  clearInterval(callTimer);
+  callSeconds = 0;
+  document.getElementById('call-modal').classList.remove('open');
+  showToast('📵 Call අවසන් විය');
+}
+
+function startTimer() {
+  callSeconds = 0;
+  clearInterval(callTimer);
+  callTimer = setInterval(() => {
+    callSeconds++;
+    const m = String(Math.floor(callSeconds/60)).padStart(2,'0');
+    const s = String(callSeconds%60).padStart(2,'0');
+    document.getElementById('call-timer').textContent = `${m}:${s}`;
+  }, 1000);
+}
+
+function toggleMute() {
+  micOn = !micOn;
+  updateMicBtn();
+}
+
+function updateMicBtn() {
+  const icon = micOn ? '🎙️' : '🔇';
+  document.getElementById('mute-btn').textContent = icon;
+  const cba = document.getElementById('cba-mic');
+  if (cba) {
+    cba.textContent = icon;
+    cba.classList.toggle('active', !micOn);
+  }
+}
+
+function toggleCam() {
+  camOn = !camOn;
+  showToast(camOn ? '📹 Camera on' : '📷 Camera off');
+}
+
+// ─── BOOK ───
+function openBookModal(id) {
+  activeTutor = tutors.find(t => t.id === id);
+  document.getElementById('book-tutor-label').textContent = `${activeTutor.name} (${activeTutor.subject})`;
+
+  // date default today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('book-date').value = today;
+
+  // slots
+  const slotsEl = document.getElementById('time-slots');
+  pickedSlot = null;
+  const takenIndex = Math.floor(Math.random() * activeTutor.slots.length);
+  slotsEl.innerHTML = activeTutor.slots.map((s, i) => `
+    <div class="slot ${i === takenIndex ? 'taken' : ''}" onclick="pickSlot(this,'${s}')">${s}</div>
+  `).join('');
+
+  document.getElementById('book-modal').classList.add('open');
+}
+
+function pickSlot(el, slot) {
+  document.querySelectorAll('#time-slots .slot').forEach(s => s.classList.remove('picked'));
+  el.classList.add('picked');
+  pickedSlot = slot;
+}
+
+function closeBookModal() {
+  document.getElementById('book-modal').classList.remove('open');
+}
+
+function confirmBooking() {
+  const name = document.getElementById('student-name').value.trim();
+  const date = document.getElementById('book-date').value;
+  if (!name) { showToast('⚠️ නම ලියන්න'); return; }
+  if (!pickedSlot) { showToast('⚠️ වේලාවක් තෝරන්න'); return; }
+  closeBookModal();
+  showToast(`✅ ${activeTutor.name} සමග ${date} ${pickedSlot} Booked!`);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Close modal on overlay click
+document.getElementById('call-modal').addEventListener('click', function(e) {
+  if (e.target === this) endCall();
+});
+document.getElementById('book-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeBookModal();
+});
+
+// init
+renderTutors();
+</script>
+</body>
+</html>
